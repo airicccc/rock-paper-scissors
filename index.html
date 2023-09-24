@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissors</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<script>
+			let userScore = 0;
+			let computerScore = 0;
+			console.log("Let's play best-of-5 rock-paper-scissors!");
+			function getComputerChoice() {
+				let rand = Math.floor(Math.random() * 3);
+				let computerChoice;
+				if (rand === 0) {
+					computerChoice = "rock";
+				} else if (rand === 1) {
+					computerChoice = "paper";
+				} else {
+					computerChoice = "scissors";
+				}
+				return computerChoice;
+			}
+			function playRound(userChoice, computerChoice) {
+				let selected = userChoice.toLowerCase();
+				let result;
+				if (selected === computerChoice) {
+					result = "Tie! Both players selected " + computerChoice;
+				}
+				if (selected === "rock" && computerChoice === "paper") {
+					result = "You lose! Paper beats rock";
+					computerScore += 1;
+				}
+				if (selected === "rock" && computerChoice === "scissors") {
+					result = "You win! Rock beats scissors";
+					userScore += 1;
+				}
+				if (selected === "paper" && computerChoice === "rock") {
+					result = "You win! Paper beats rock";
+					userScore += 1;
+				}
+				if (selected === "paper" && computerChoice === "scissors") {
+					result = "You lose! Scissors beats paper";
+					computerScore += 1;
+				}
+				if (selected === "scissors" && computerChoice === "rock") {
+					result = "You lose! Rock beats scissors";
+					computerScore += 1;
+				}
+				if (selected === "scissors" && computerChoice === "paper") {
+					result = "You win! Scissors beats paper";
+					userScore += 1;
+				}
+				return result;
+			}
+			function game() {
+				for (let i = 0; i < 5; i++) {
+					let userChoice = prompt("Pick your choice");
+					let computerChoice = getComputerChoice();
+					console.log(
+						"Round " + (i + 1) + ": " + playRound(userChoice, computerChoice)
+					);
+					if (userScore === 3) {
+						console.log(
+							"Player Wins! Final Score: " + userScore + " " + computerScore
+						);
+						return;
+					}
+					if (computerScore === 3) {
+						console.log(
+							"Computer Wins! Final Score: " + userScore + " " + computerScore
+						);
+						return;
+					}
+				}
+			}
+			game();
+		</script>
+	</body>
+</html>
