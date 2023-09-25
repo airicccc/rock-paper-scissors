@@ -1,0 +1,10 @@
+.game-ui {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 48px 0;
+}
+
+.display-text {
+    text-align: center;
+}
